@@ -128,3 +128,8 @@ crearPar a b = (a, b)
 --Ej 4h)
 invertir :: (a, b) -> (b, a)
 invertir (a, b) = (b, a)
+
+---------------------------------------------------------
+
+--Ej 5a)
+--todosMenores :: (Int, Int, Int) -> Bool
