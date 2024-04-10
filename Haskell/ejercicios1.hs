@@ -85,6 +85,46 @@ estanRelacionados a b = a*a + a*b * div (-a) b == 0
 
 ---------------------------------------------------------
 
+--Ej 4a)
+prodInt :: (Float, Float) -> (Float, Float) -> Float
+prodInt t1 t2 = fst t1 * fst t2 + snd t1 * snd t2
+
 --Ej 4b)
 todoMenor :: (Float, Float) -> (Float, Float) -> Bool
 todoMenor t1 t2 = fst t1 < fst t2 && snd t1 < snd t2
+
+--Ej 4c)
+distanciaPuntos :: (Float, Float) -> (Float, Float) -> Float
+distanciaPuntos t1 t2 = sqrt ((fst t2 - fst t1)^2 + (snd t2 - snd t1)^2)
+
+--Ej 4d)
+sumaTerna :: (Int, Int, Int) -> Int
+sumaTerna (x,y,z) = x + y + z
+
+--Ej 4e)
+sumarSoloMultiplos :: (Int, Int, Int) -> Int -> Int
+sumarSoloMultiplos (x, y, z) w
+    | mod x w == 0 && mod y w == 0 && mod z w == 0 = sumaTerna (x,y,z)
+    | mod x w == 0 && mod y w == 0 && mod z w /= 0 = sumaTerna(x,y,0)
+    | mod x w /= 0 && mod y w == 0 && mod z w == 0 = sumaTerna(0,y,z)
+    | mod x w == 0 && mod y w /= 0 && mod z w == 0 = sumaTerna(x,0,z)
+    | mod x w == 0 && mod y w /= 0 && mod z w /= 0 = sumaTerna(x,0,0)
+    | mod x w /= 0 && mod y w == 0 && mod z w /= 0 = sumaTerna(0,y,0)
+    | mod x w /= 0 && mod y w /= 0 && mod z w == 0 = sumaTerna(0,0,z)
+    | otherwise = 0
+
+--Ej 4f)
+posPrimerPar :: (Int, Int, Int) -> Int
+posPrimerPar (x,y,z)
+    | even x = 1
+    | even y = 2
+    | even z = 3
+    | otherwise = 4
+
+--Ej 4g)
+crearPar :: a -> b -> (a, b)
+crearPar a b = (a, b)
+
+--Ej 4h)
+invertir :: (a, b) -> (b, a)
+invertir (a, b) = (b, a)
