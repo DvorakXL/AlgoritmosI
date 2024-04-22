@@ -105,6 +105,15 @@ eAprox n
 e :: Float
 e = eAprox 10
 
+-- Ejercicio 12 --
+sucesionAn :: Int -> Float
+sucesionAn n
+    | n == 1 = 2
+    | otherwise = 2 + 1/sucesionAn (n-1)
+
+raizDe2Aprox :: Int -> Float
+raizDe2Aprox n = sucesionAn n - 1
+
 -- Ejercicio 13 --
 sumatoria1 :: Int -> Int -> Int
 sumatoria1 i m
