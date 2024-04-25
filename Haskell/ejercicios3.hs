@@ -1,3 +1,4 @@
+import Distribution.Compat.Lens (_1)
 -- Ejercicio 2 --
 -- 1)
 pertenece :: (Eq t) => t -> [t] -> Bool
@@ -33,3 +34,25 @@ ordenar xs = ordenarAux xs []
 ordenarAux :: (Ord t, Eq t) => [t] -> [t] -> [t]
 ordenarAux [] aux = aux
 ordenarAux xs aux = ordenarAux (quitar (maximo xs) xs) (maximo xs:aux)
+
+-- Ejercicio 4 --
+-- a)
+sacarBlancosRepetidos :: [Char] -> [Char]
+sacarBlancosRepetidos [] = []
+sacarBlancosRepetidos [x] = [x]
+sacarBlancosRepetidos (x:y:xs)
+    | x == y && x == ' ' = sacarBlancosRepetidos (y:xs)
+    | otherwise = x:sacarBlancosRepetidos (y:xs)
+
+-- b)
+contarPalabras :: [Char] -> Int
+contarPalabras xs = contarPalabrasAux xs 0
+
+contarPalabrasAux :: [Char] -> Int -> Int
+contarPalabrasAux [] _ = 0
+contarPalabrasAux [x] _
+    | x /= ' ' = 1
+    | otherwise = 0
+contarPalabrasAux (x:y:xs) aux
+    | y == ' ' && x /= ' ' = contarPalabrasAux xs aux+1
+    | otherwise = contarPalabrasAux (y:xs) aux
