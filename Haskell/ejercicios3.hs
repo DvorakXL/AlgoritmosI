@@ -1,4 +1,3 @@
-import Distribution.Compat.Lens (_1)
 -- Ejercicio 2 --
 -- 1)
 pertenece :: (Eq t) => t -> [t] -> Bool
