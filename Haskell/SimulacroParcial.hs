@@ -1,6 +1,4 @@
 -- Ejercicio 1 --
-{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
-{-# HLINT ignore "Use foldr" #-}
 relacionesValidas :: [([Char],[Char])] -> Bool
 relacionesValidas [] = True
 relacionesValidas [(x,y)] = x /= y
