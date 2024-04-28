@@ -1,8 +1,44 @@
+-- Ejercicio 1 --
+-- 1)
+{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
+{-# HLINT ignore "Use foldr" #-}
+longitud :: [t] -> Int
+longitud [] = 0
+longitud (x:xs) = 1 + longitud xs
+
+-- 2)
+ultimo :: [t] -> t
+ultimo (x:xs)
+    | longitud xs == 0 = x
+    | otherwise = ultimo xs
+
+-- 3)
+principio :: [t] -> [t]
+principio [x] = []
+principio (x:xs) = x : principio xs
+
+-- 4)
+reverso :: [t] -> [t]
+reverso [] = []
+reverso (x:xs) = reverso xs ++ [x]
+
 -- Ejercicio 2 --
 -- 1)
 pertenece :: (Eq t) => t -> [t] -> Bool
 pertenece _ [] = False
 pertenece y (x:xs) = y == x || pertenece y xs
+
+-- 2)
+todosIguales :: (Eq t) => [t] -> Bool
+todosIguales [] = False
+todosIguales [x] = True
+todosIguales (x:xs) = pertenece x xs && todosIguales xs
+
+-- 3)
+todosDistintos :: (Eq t) => [t] -> Bool
+todosDistintos [] = False
+todosDistintos [x] = True
+todosDistintos (x:xs) = not (pertenece x xs) && todosDistintos xs
 
 -- 4)
 hayRepetidos :: (Eq t) => [t] -> Bool
