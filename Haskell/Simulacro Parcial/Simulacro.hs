@@ -1,3 +1,5 @@
+module Simulacro where
+
 -- Ejercicio 1 --
 relacionesValidas :: [([Char],[Char])] -> Bool
 relacionesValidas [] = True
