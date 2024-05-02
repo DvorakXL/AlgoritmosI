@@ -50,6 +50,28 @@ quitar y (x:xs)
     | y == x = xs
     | otherwise = x:quitar y xs
 
+-- 6)
+quitarTodos :: (Eq t) => t -> [t] -> [t]
+quitarTodos _ [] = []
+quitarTodos e (x:xs)
+    | e == x = pasoRecursivo
+    | otherwise = x:pasoRecursivo
+    where pasoRecursivo = quitarTodos e xs
+
+-- 7)
+eliminarRepetidos :: (Eq t) => [t] -> [t]
+eliminarRepetidos [] = []
+eliminarRepetidos (x:xs) = x:quitarTodos x pasoRecursivo
+    where pasoRecursivo = eliminarRepetidos xs
+
+-- 8)
+mismosElementos :: (Eq t) => [t] -> [t] -> Bool
+mismosElementos [] [] = True
+mismosElementos _ [] = False
+mismosElementos [] _ = False
+mismosElementos (x:xs) (y:ys) = pertenece x (y:ys) && pertenece y (x:xs) && pasoRecursivo
+    where pasoRecursivo = mismosElementos (eliminarRepetidos xs) (eliminarRepetidos ys)
+
 -- Ejercicio 3 --
 -- 3)
 maximo :: (Ord t) => [t] -> t
