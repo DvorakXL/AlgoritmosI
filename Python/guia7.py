@@ -120,10 +120,10 @@ def cero_en_pos_par_valor (s: list[int]) -> list[int]:
     return s2
 
 # Ejercicio 2.3
-def es_vocal (c:chr) -> bool:
+def es_vocal (char:str) -> bool:
     vocales: list = ['a','e','i','o','u']
 
-    return pertenece(vocales, c)
+    return pertenece(vocales, char)
 
 def sacar_vocales (s: str) -> str:
     s2: list[str] = ""
@@ -133,3 +133,45 @@ def sacar_vocales (s: str) -> str:
             s2 += char
     
     return s2
+
+# Ejercicio 2.4
+def reemplaza_vocales (s: str) -> str:
+    s2: list[str] = ""
+
+    for char in s:
+        if not es_vocal(char):
+            s2 += char
+        else:
+            s2 += "_"
+    
+    return s2
+
+# Ejercicio 2.5
+def da_vuelta_str (s: str) -> str:
+    return s[::-1]
+
+# Ejercicio 2.6
+def eliminar_repetidos (s: str) -> str:
+    s2: str = ""
+
+    for char in s:
+        if not pertenece(s2, char):
+            s2 += char
+    
+    return s2
+
+# Ejercicio 4.1
+def estudiantes ():
+    nombres: list[str] = []
+    while True:
+        estudiante: str = input()
+        
+        if estudiante.lower() == "listo":
+            print("Nombres de los estudiantes: ")
+            for nombre in nombres:
+                print(nombre)
+            break
+        else:
+            nombres.append(estudiante)
+
+estudiantes()
