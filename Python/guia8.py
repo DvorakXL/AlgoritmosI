@@ -98,4 +98,17 @@ def esta_bien_balanceada (formula: str) -> bool:
     res = cantidad_elementos(pila_parentesis) == 0 and res
     return res
 
-print(esta_bien_balanceada("()(()))"))
+# Ejercicio 13
+def cola_numeros_al_azar (cantidad: int, desde: int, hasta: int) -> Cola[int]:
+    pila_al_azar: Pila[int] = generar_nros_al_azar(cantidad, desde, hasta)
+    cola_al_azar: Cola[int] = Cola()
+
+    for i in range(pila_al_azar.qsize()):
+        cola_al_azar.put(pila_al_azar.get())
+    
+    return cola_al_azar
+
+
+cola = cola_numeros_al_azar(5,5,20)
+for i in range(cola.qsize()):
+    print(cola.get())
