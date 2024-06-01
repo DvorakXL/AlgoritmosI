@@ -173,5 +173,3 @@ def estudiantes ():
             break
         else:
             nombres.append(estudiante)
-
-estudiantes()
