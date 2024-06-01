@@ -98,4 +98,34 @@ def esta_bien_balanceada (formula: str) -> bool:
     res = cantidad_elementos(pila_parentesis) == 0 and res
     return res
 
-print(esta_bien_balanceada("()(()))"))
+# Ejercicio 12
+def evaluar_expresion (formula: str) -> float:
+    pila_operandos: Pila[str] = Pila()
+    evaluado: float = 0
+    operadores: list[str] = ['+','-','*','/']
+    
+    tokens: list[str] = formula.split(' ')
+    for token in tokens:
+        if not pertenece(operadores, token):
+            pila_operandos.put(token)
+        else:
+            y: int = int(pila_operandos.get())
+            x: int = 0
+
+            if pila_operandos.empty():
+                x = evaluado
+            else:
+                x = int(pila_operandos.get())
+
+            if token == operadores[0]:
+                evaluado = x + y
+            elif token == operadores[1]:
+                evaluado = x - y
+            elif token == operadores[2]:
+                evaluado = x * y
+            elif token == operadores[3]:
+                evaluado = int(x / y)
+
+    return evaluado
+
+print(evaluar_expresion("14 7 / 2 + 4 /"))
