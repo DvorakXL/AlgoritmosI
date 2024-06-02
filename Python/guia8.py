@@ -272,12 +272,38 @@ def jugar_carton_de_bingo (carton: list[int], bolillero: Cola[int]) -> int:
 
     return cantidad_jugadas
 
+# Ejercicio 17
+def anotar_paciente (cola: Cola[tuple[int,str,str]], prioridad: int, nombre: str, especialidad: str) -> None:
+    cola.put((prioridad,nombre,especialidad))
+
+def n_pacientes_urgentes (cola: Cola[tuple[int,str,str]]) -> int:
+    copiar_cola: Cola[(int,str,str)] = Cola()
+    cuenta: int = 0
+    nivel_urgencia: int = 3
+
+    while not cola.empty():
+        elem: tuple[int,str,str] = cola.get()
+        copiar_cola.put(elem)
+        if elem[0] <= nivel_urgencia:
+            cuenta += 1
+    
+    mover_cola(cola, copiar_cola)
+    return cuenta
+
+def agrupar_por_longitud (nombre_archivo: str) -> dict:
+    archivo = open(nombre_archivo, 'r', encoding='utf-8')
+    diccionario: dict = {}
+    for linea in archivo.readlines():
+        palabras = linea.split(' ')
+        
+        for palabra in palabras:
+            longitud = len(palabra)
+            if longitud in diccionario:
+                diccionario[longitud] += 1
+            else:
+                diccionario[longitud] = 1
+    
+    return diccionario
+
 # ----------------- Testing -----------------------
-bingo = armar_secuencia_de_bingo()
-carton = generar_carton()
-print(carton)
-print_cola(bingo)
-print("A JUGAR!!")
-print(jugar_carton_de_bingo(carton, bingo))
-print("Estado final")
-print(carton)
+print(agrupar_por_longitud('archivo.txt'))
