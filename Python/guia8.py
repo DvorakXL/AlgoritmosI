@@ -89,6 +89,60 @@ def cantidad_apariciones (nombre_archivo: str, palabra: str) -> int:
 
     return apariciones
 
+# Ejercicio 6
+def es_minuscula (char: str) -> bool:
+    return 'a' <= char[0] and char[0] <= 'z'
+
+def es_mayuscula (char: str) -> bool:
+    return 'A' <= char[0] and char[0] <= 'Z'
+
+def es_numero (char: str) -> bool:
+    return '0' <= char[0] and char[0] <= '9'
+
+def es_legible (char: str) -> bool:
+    return es_minuscula(char) or es_mayuscula(char) or es_numero(char) or char[0] == ' ' or char[0] == '_'
+
+def listar_palabras_de_archivo (nombre_archivo: str) -> list[str]:
+    archivo = open(nombre_archivo, 'rb')
+    res: list[str] = []
+    palabra: str = ""
+    longitud_valida = 5
+
+    for linea in archivo.readlines():
+        longitud_linea = len(linea)
+        for i in range(longitud_linea):
+            char_str = chr(linea[i])
+            if es_legible(char_str):
+                palabra += char_str
+            else:
+                if len(palabra) >= longitud_valida:
+                    res.append(palabra)
+                    palabra = ""
+
+    return res
+
+# Ejercicio 7
+def promedio_estudiante (nombre_archivo: str, lu: str) -> float:
+    archivo = open(nombre_archivo, 'r', encoding='utf-8')
+    notas: list[float] = []
+    promedio: float = 0
+
+    for linea in archivo.readlines():
+        lu_actual: list = linea.strip('\n').split(', ') # Estas funciones las deberia implementar pero no lo voy a hacer :D
+        if lu_actual[0] == lu:
+            nota: float = float(lu_actual[3])
+            notas.append(nota)
+
+    for nota in notas:
+        promedio += nota
+
+    cantidad_de_notas: int = len(notas)
+    if cantidad_de_notas > 0:
+        promedio /= cantidad_de_notas
+
+    archivo.close()
+    return promedio
+
 # Ejercicio 8
 def generar_nros_al_azar (cantidad: int, desde: int, hasta: int) -> Pila[int]:
     p: Pila[int] = Pila()
@@ -306,4 +360,3 @@ def agrupar_por_longitud (nombre_archivo: str) -> dict:
     return diccionario
 
 # ----------------- Testing -----------------------
-print(agrupar_por_longitud('archivo.txt'))
