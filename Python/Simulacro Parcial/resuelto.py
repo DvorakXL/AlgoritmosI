@@ -26,7 +26,43 @@ def elementos_exclusivos (s: list[int], t: list[int]) -> list[int]:
     
     return res
 
-s = [-1,2,3,5]
-t = [3,5,8,10]
+# Ejercicio 3
+def interseccion_diccionarios (d1: dict[str,str], d2: dict[str,str]) -> dict[str,str]:
+    res: dict[str,str] = {}
 
-print(elementos_exclusivos(s,t))
+    for clave, valor in d1.items():
+        if clave in d2:
+            res[clave] = valor
+    
+    return res
+
+def contar_traducciones_iguales (ing: dict[str,str], ale: dict[str,str]) -> int:
+    res: int = 0
+    palabras_en_ambos: dict[str,str] = interseccion_diccionarios(ing, ale)
+
+    for clave in palabras_en_ambos.keys():
+        if ing[clave] == ale[clave]:
+            res += 1
+    
+    return res
+
+# Ejercicio 4
+def contar_repeticiones (lista: list[int], e: int) -> int:
+    res: int = 0
+
+    for i in range(len(lista)):
+        if lista[i] == e:
+            res += 1
+    
+    return res
+
+def convertir_a_diccionario (lista: list[int]) -> dict[int,int]:
+    res: dict[int,int] = {}
+
+    for i in range(len(lista)):
+        elem: int = lista[i]
+        if not elem in res:
+            repeticiones: int = contar_repeticiones(lista, elem)
+            res[elem] = repeticiones
+    
+    return res
